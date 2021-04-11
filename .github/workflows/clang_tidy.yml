@@ -1,0 +1,22 @@
+name: clang-tody
+
+on:
+  push:
+    branches-ignore:
+      - 'master'
+
+jobs:
+  build:
+    name: Clang-Tidy 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Install clang-tidy
+        run: |
+          sudo apt install clang-tidy
+      - name: Run clang-tidy
+        run: |
+          bash tools/clang_tidy_all_the_things.sh
+
